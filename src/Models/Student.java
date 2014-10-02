@@ -14,6 +14,10 @@ public class Student {
     private double grade;
     private String group;
 
+    public Student() {
+    }
+
+    
     public Student(int studentNumber, double grade, String group) {
         this.studentNumber = studentNumber;
         this.grade = grade;

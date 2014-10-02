@@ -5,7 +5,7 @@
  */
 package studentlistp2;
 
-import Models.Student;
+import Models.Create;
 
 /**
  *
@@ -17,7 +17,7 @@ public class StudentListP2 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Student s = new Student(50060001, 5.6, "IS201");
+        Create list = new Create(200);
     }
     
 }

@@ -55,8 +55,6 @@ public class Create {
             }
            // assigns the students to a class
             SList[i].setGroup("I" + "" + 2 + "");
-           
-           SList[i].setGroup(null);
        }
     }
     

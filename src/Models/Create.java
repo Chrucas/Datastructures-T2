@@ -23,6 +23,7 @@ public class Create {
     for(int i = 0;i<i+size;i++){
     SList[i]= new Student();   
     
+       SList[i]= new Student();  
     }    
     this.size=size;  
     }
@@ -39,16 +40,34 @@ public class Create {
        // loop through student array
        for(int i=1;i<i+SList.length;i++){
            // assigns the studentnumber
+           double grade = (ran.nextInt(9)+1)+ran.nextDouble()*10+1;
+           if (grade>10.0){
+                grade= 10.0;
+           }
+           SList[i].setGrade(grade);
+
            for(int j=50060001;j<j+size;j++)
            SList[i].setStudentNumber(j);
-           // assigns a random grade between 1.0 and 10
-           double grade = (ran.nextInt(9)+1)+ran.nextDouble()*10+1;
+           grade = (ran.nextInt(9)+1)+ran.nextDouble()*10+1;
            SList[i].setGrade(grade);
            if (grade>10.0){
             grade= 10.0;
             }
            // assigns the students to a class
             SList[i].setGroup("I" + "" + 2 + "");
+           
+           SList[i].setGroup(null);
        }
     }
-}
+    
+    public void InsSortGrade(Student[] SList){
+        for(int i=1;i<SList.length;i++){
+            Student temp = SList[i];
+            int j;
+            for(j=i-1;j>=0&&temp.getGrade()<SList[j].getGrade(); j--){
+                SList[j+1]=SList[j];
+            }
+            SList[j+1]= temp;
+        }
+    }
+}    

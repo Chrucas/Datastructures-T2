@@ -60,14 +60,5 @@ public class Create {
        }
     }
     
-    public void InsSortGrade(Student[] SList){
-        for(int i=1;i<SList.length;i++){
-            Student temp = SList[i];
-            int j;
-            for(j=i-1;j>=0&&temp.getGrade()<SList[j].getGrade(); j--){
-                SList[j+1]=SList[j];
-            }
-            SList[j+1]= temp;
-        }
-    }
+    
 }    

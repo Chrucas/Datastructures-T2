@@ -22,6 +22,7 @@ public class Create {
     Student[]SList = new Student[size];
     for(int i = 0;i<i+size;i++){
     SList[i]= new Student();   
+    
     }    
     this.size=size;  
     }

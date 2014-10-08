@@ -5,6 +5,8 @@
  */
 package Models;
 
+import java.util.Random;
+
 /**
  *
  * @author gebak_000
@@ -49,6 +51,11 @@ public class Student {
 
     public void setGroup(String group) {
         this.group = group;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" + "studentNumber=" + studentNumber + ", grade=" + grade + ", group=" + group + '}';
     }
     
     

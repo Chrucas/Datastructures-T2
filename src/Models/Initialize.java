@@ -16,26 +16,29 @@ import java.util.Collections;
  */
 public class Initialize {
 
-
-
-    // creates an array of students with empty fields
     
         
     static Double mkGrd() {
 
         Random ran = new Random();    
-        double grade = (ran.nextInt(9)+1)+ran.nextDouble()*10+1;
-        grade = ran.nextDouble()*10+1;
+        double grade = (ran.nextDouble()*9.1)+1.0;
+        grade = (Math.floor(grade * 10)/10);
         return grade;
         
     }
     
-    
+/***
+ * 
+ * @param S
+ * 
+ * de setStudents methode wordt gebruikt om de lege Student list te vullen met data zoals de grade, student nummer en klas.
+ * 
+ */    
 
     public static void setStudents(Student[]S){
-        double GroupNr = (((S.length/4.0)/32.0));
+        double GroupNr = (((S.length/4.0)/32.0));//aantal klassen per richting
         
-        int groupNmr = (int) Math.ceil(GroupNr*4.0);
+        int groupNmr = (int) Math.ceil(GroupNr*4.0);//aantal klassen totaal
         String[]groups = new String[groupNmr];
         String[] fieldsOfStudy = new String[]{"G", "N", "S", "T"};
     
@@ -52,7 +55,7 @@ public class Initialize {
         }
         for (int i=0; i<S.length; i++) {
            
-            double d = mkGrd();
+            double d = mkGrd();          
             S[i].setGrade(d);
             S[i].setStudentNumber(50060001);
             S[i].setGroup(groups[i%groups.length]);
@@ -62,13 +65,16 @@ public class Initialize {
             
         for(int i=0;i<S.length;i++){
             S[i].setStudentNumber(S[i].getStudentNumber()+i);
-        }
-        
+        }        
         Collections.shuffle(Arrays.asList(S));
     }
+    
+    /*
+    deze print methode wordt gebruikt om alles uit te printen.
+    */
     public static void print(Student[]S){
         for(int i=0;i<S.length;i++){
-            System.out.println(S[i]);
+            System.out.println(S[i]);            
         }
     }
 }    

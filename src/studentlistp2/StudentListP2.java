@@ -7,7 +7,7 @@ package studentlistp2;
 
 import Models.Initialize;
 import Models.Student;
-import Models.Sorting;
+import Models.Sort;
 
 
 /**
@@ -21,12 +21,11 @@ public class StudentListP2 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Student[]SList = new Student[200];
+        Student[] SList = new Student[200];
         Initialize.setStudents(SList);
         
-       // Sorting.InsSortGrade(SList);
-        Sorting.SortGroup(SList);
-       // Initialize.print(SList);
+//        Sort.InsSortGrade(SList);
+        Initialize.print(Sort.SortGroup(SList));
         
     }
 }

@@ -5,9 +5,7 @@
  */
 package Models;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.Map;
 
 /**
@@ -26,6 +24,61 @@ public class Sort {
             SList[j+1]= temp;
         }
     }
+    
+
+
+    public static void quicksortingGrade(Student[] Slist) {
+            // check for empty or null array
+            if (Slist ==null || Slist.length==0){
+                    return;
+            }
+            
+            int students = Slist.length;
+            quicksortGrade(0, students - 1, Slist);
+    }
+
+    private static void quicksortGrade(int low, int high, Student[] Slist) {
+            int i = low, j = high+1;
+            // Get the pivot element from the middle of the list
+            int pivot = (int) Slist[low + (high-low)/2].getGrade();
+
+            // Divide into two lists
+            while (i <= j) {
+                    // If the current value from the left list is smaller then the pivot
+                    // element then get the next element from the left list
+                    while (Slist[i].getGrade() <= pivot) {
+                            i++;
+                    }
+                    // If the current value from the right list is larger then the pivot
+                    // element then get the next element from the right list
+                    while (Slist[j].getGrade() > pivot) {
+                            j--;
+                    }
+
+                    // If we have found a values in the left list which is larger then
+                    // the pivot element and if we have found a value in the right list
+                    // which is smaller then the pivot element then we exchange the
+                    // values.
+                    // As we are done we can increase i and j
+                    if (i <= j) {
+                            exchangeGrade(i, j, Slist);
+                            i++;
+                            j--;
+                    }
+            }
+            // Recursion    
+            if (low < j)
+                    quicksortGrade(low, j-1, Slist);
+            if (i < high)
+                    quicksortGrade(i+1, high, Slist);
+    }
+
+    private static void exchangeGrade(int i, int j, Student[] Slist) {
+            int temp = (int) Slist[i].getGrade();
+            Slist[i].setGrade(Slist[j].getGrade());
+            Slist[j].setGrade(temp);
+    }
+    
     
     public static Student[] InsSortID(Student[] SList){
         for(int i=1;i<SList.length;i++){
@@ -46,7 +99,7 @@ public class Sort {
     }
     
     public static Student[] SortGroup(Student[] SList){
-        Map<String, ArrayList> Bckts = new HashMap<String, ArrayList>();
+        Map<String, ArrayList> Bckts = new HashMap<>();
         ArrayList keys = new ArrayList();
         for (int i = 0; i < SList.length; i++) {
             String key = SList[i].getGroup();

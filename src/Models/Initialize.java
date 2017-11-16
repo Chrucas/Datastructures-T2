@@ -74,7 +74,7 @@ public class Initialize {
     */
     public static void print(Student[]S){
         for(int i=0;i<S.length;i++){
-            System.out.println(S[i]);            
+            System.out.println(i+1 + " - " + S[i]);            
         }
     }
 }    

@@ -21,11 +21,17 @@ public class StudentListP2 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Student[] SList = new Student[200];
+        Student[] SList = new Student[10000];
         Initialize.setStudents(SList);
+        System.out.println(SList.length);
+//        Initialize.print(SList);
         
+        System.out.println("----------------------------------------------------------------------");
+        Sort.quicksortingGrade(SList);
 //        Sort.InsSortGrade(SList);
-        Initialize.print(Sort.SortGroup(SList));
+        
+        Initialize.print(SList);
+//        Initialize.print(Sort.SortGroup(SList));
         
     }
 }

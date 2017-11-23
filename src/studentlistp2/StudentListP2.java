@@ -24,10 +24,10 @@ public class StudentListP2 {
         Student[] SList = new Student[10000];
         Initialize.setStudents(SList);
         System.out.println(SList.length);
-//        Initialize.print(SList);
+        Initialize.print(SList);
         
         System.out.println("----------------------------------------------------------------------");
-        Sort.quicksortingGrade(SList);
+        Sort.quickSortStudents(SList);
 //        Sort.InsSortGrade(SList);
         
         Initialize.print(SList);

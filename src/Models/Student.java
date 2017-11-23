@@ -5,13 +5,12 @@
  */
 package Models;
 
-import java.util.Random;
-
 /**
  *
  * @author gebak_000
  */
-public class Student {
+public class Student implements Comparable<Student> {
+    
     private int studentNumber;
     private double grade;
     private String group;
@@ -56,6 +55,28 @@ public class Student {
     @Override
     public String toString() {
         return "Student{" + "studentNumber=" + studentNumber + ", grade=" + grade + ", group=" + group + '}';
+    }
+
+    @Override
+    public int compareTo(Student student) {
+        if (this.grade < student.getGrade()) {
+            return -1;
+        } else if (this.grade == student.getGrade()) {
+            if (this.studentNumber > student.getStudentNumber()) {
+                return 1;
+            }
+            return 0;
+        } else {
+            return 1;
+        }
+    }
+    
+    public int compareToStudentNr(Student student) {
+        if (this.studentNumber < student.getStudentNumber()) {
+            return -1;
+        } else {
+            return 1;
+        }
     }
     
     

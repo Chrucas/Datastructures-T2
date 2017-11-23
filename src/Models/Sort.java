@@ -7,6 +7,7 @@ package Models;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 /**
  *
@@ -27,51 +28,100 @@ public class Sort {
     
 
 
-    public static void quicksortingGrade(Student[] Slist) {
-            // check for empty or null array
-            if (Slist ==null || Slist.length==0){
-                    return;
-            }
-            
-            int students = Slist.length;
-            quicksortGrade(0, students - 1, Slist);
+//    public static void quicksortingGrade(Student[] Slist) {
+//            // check for empty or null array
+//            if (Slist ==null || Slist.length==0){
+//                    return;
+//            }
+//            
+//            int students = Slist.length;
+//            quicksortGrade(0, students - 1, Slist);
+//    }
+
+//    private static void quicksortGrade(int low, int high, Student[] Slist) {
+//            int i = low, j = high+1;
+//            // Get the pivot element from the middle of the list
+//            int pivot = (int) Slist[low + (high-low)/2].getGrade();
+//
+//            // Divide into two lists
+//            while (i <= j) {
+//                    // If the current value from the left list is smaller then the pivot
+//                    // element then get the next element from the left list
+//                    while (Slist[i].getGrade() <= pivot) {
+//                            i++;
+//                    }
+//                    // If the current value from the right list is larger then the pivot
+//                    // element then get the next element from the right list
+//                    while (Slist[j].getGrade() > pivot) {
+//                            j--;
+//                    }
+//
+//                    // If we have found a values in the left list which is larger then
+//                    // the pivot element and if we have found a value in the right list
+//                    // which is smaller then the pivot element then we exchange the
+//                    // values.
+//                    // As we are done we can increase i and j
+//                    if (i <= j) {
+//                            exchangeGrade(i, j, Slist);
+//                            i++;
+//                            j--;
+//                    }
+//            }
+//            // Recursion    
+//            if (low < j)
+//                    quicksortGrade(low, j-1, Slist);
+//            if (i < high)
+//                    quicksortGrade(i+1, high, Slist);
+//    }
+    
+    public static void quickSortStudents(Comparable[] s){
+        StdRandom.shuffle(s);
+        QSortStudents(s, 0, s.length-1);
     }
-
-    private static void quicksortGrade(int low, int high, Student[] Slist) {
-            int i = low, j = high+1;
-            // Get the pivot element from the middle of the list
-            int pivot = (int) Slist[low + (high-low)/2].getGrade();
-
-            // Divide into two lists
-            while (i <= j) {
-                    // If the current value from the left list is smaller then the pivot
-                    // element then get the next element from the left list
-                    while (Slist[i].getGrade() <= pivot) {
-                            i++;
-                    }
-                    // If the current value from the right list is larger then the pivot
-                    // element then get the next element from the right list
-                    while (Slist[j].getGrade() > pivot) {
-                            j--;
-                    }
-
-                    // If we have found a values in the left list which is larger then
-                    // the pivot element and if we have found a value in the right list
-                    // which is smaller then the pivot element then we exchange the
-                    // values.
-                    // As we are done we can increase i and j
-                    if (i <= j) {
-                            exchangeGrade(i, j, Slist);
-                            i++;
-                            j--;
-                    }
-            }
-            // Recursion    
-            if (low < j)
-                    quicksortGrade(low, j-1, Slist);
-            if (i < high)
-                    quicksortGrade(i+1, high, Slist);
+    
+//    private static void QSortStudents(Comparable[] s, int low, int high){
+//        if(high<= low) return;
+//        int j = partition(s, low, high);
+//        QSortStudents(s, low, j-1);
+//        QSortStudents(s, j+1, high);
+//        
+//    }
+    
+    private static void QSortStudents(Comparable[] s, int low, int high){
+        if(high<= low) return;
+        int tl = low, i= low+1, tg = high;
+        Comparable v = s[low];
+        while (i <=tg){
+            int cmp = s[i].compareTo(v);
+            if( cmp <0) exch(s, tl++, i++);
+            else if(cmp > 0) exch(s, i, tg--);
+            else i++;
+        }
+        QSortStudents(s, low, tl-1);
+        QSortStudents(s, tg+1, high);
     }
+    
+    private static int partition(Comparable[] s, int low, int high){
+        int i = low, j = high+1;
+        Comparable v = s[low];
+        while(true){
+            while (less(s[++i], v)) if (i == high) break;
+            while (less(v, s[--j])) if (j == low) break;
+            if( i >=j) break;
+            exch(s, i, j);
+        }
+        exch(s, low, j);
+        return j;    
+    }
+    
+    private static boolean less(Comparable a, Comparable b){
+        return a.compareTo(b) < 0;
+    }
+    
+    private static void exch(Comparable[] a, int i, int j){
+        Comparable t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    
 
     private static void exchangeGrade(int i, int j, Student[] Slist) {
             int temp = (int) Slist[i].getGrade();
